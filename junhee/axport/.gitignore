@@ -34,9 +34,13 @@ test-results/
 
 # ── 실행 중 생성되는 비공개 데이터 ────────────────────────────────────
 # 실제 기업 업로드·보고서·API 캐시. Git 에 넣지 않는다.
+# 폴더 자체도 예외로 두어야 그 안의 .gitkeep 예외가 살아난다.
 instance/*
+!instance/uploads/
 !instance/uploads/.gitkeep
+!instance/reports/
 !instance/reports/.gitkeep
+!instance/cache/
 !instance/cache/.gitkeep
 *.log
 

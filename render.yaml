@@ -1,0 +1,60 @@
+# Render Blueprint — mini_t6 (AXPORT)
+#
+# ※ 이 파일은 이미 Render 웹 UI 로 만들어 둔 기존 서비스에 자동 적용되지 않는다.
+#    웹 UI 에만 있던 설정을 저장소에 기록해 두고, 같은 설정을 재현하거나
+#    새 서비스를 만들 때(Render → New → Blueprint) 쓰기 위한 파일이다.
+#    설정 설명은 junhee/axport/README.md 의 「배포」절을 본다.
+#
+# ※ envVars 에 실제 키 값을 적지 않는다. (CONTRIBUTING §6)
+#    아래는 변수명만 선언하고 sync: false 로 두어, Blueprint 생성 시
+#    Render 대시보드에서 값을 직접 입력하게 한다.
+#    변수명 목록은 junhee/api-vault/.env.example 과 같다.
+
+services:
+  - type: web
+    name: mini-t6
+    runtime: python
+    plan: free
+    rootDir: junhee/axport
+    buildCommand: pip install -r requirements.txt
+    # PYTHONPATH=src: src 레이아웃이고 pyproject.toml 이 없어 패키지가 설치되지 않는다.
+    # pytest.ini 의 pythonpath 는 pytest 에만 적용된다.
+    startCommand: PYTHONPATH=src uvicorn axport.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # 값은 대시보드에서 입력한다. 여기에 적지 않는다.
+      - key: DATA_GO_KR_API_KEY
+        sync: false
+      - key: ECOS_API_KEY
+        sync: false
+      - key: KOREAEXIM_API_KEY
+        sync: false
+      - key: UNIPASS_API_KEY
+        sync: false
+      - key: COMTRADE_API_KEY
+        sync: false
+      - key: CENSUS_API_KEY
+        sync: false
+      - key: WTO_API_KEY
+        sync: false
+      - key: TRADE_GOV_API_KEY
+        sync: false
+      - key: NEWSDATA_API_KEY
+        sync: false
+      - key: NEWSAPI_ORG_KEY
+        sync: false
+      - key: OPENDART_API_KEY
+        sync: false
+      - key: FINNHUB_API_KEY
+        sync: false
+      - key: ALPHAVANTAGE_API_KEY
+        sync: false
+      - key: TWELVEDATA_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: LAW_GO_KR_OC
+        sync: false

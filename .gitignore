@@ -30,7 +30,17 @@ node_modules/
 # ============================================================
 # 실행 중 생성되는 비공개 데이터
 # ============================================================
-instance/
+# 'instance/' 로 폴더 전체를 제외하면 하위 .gitignore 의 !instance/... 예외가
+# 무효가 된다 (Git 은 제외된 부모 디렉터리 안의 파일을 되살리지 못한다).
+# 그래서 내용물만 제외하고 폴더 구조(.gitkeep)는 추적한다.
+# 실제 업로드·보고서·캐시 파일은 계속 제외된다.
+instance/*
+!instance/uploads/
+!instance/uploads/.gitkeep
+!instance/reports/
+!instance/reports/.gitkeep
+!instance/cache/
+!instance/cache/.gitkeep
 *.log
 
 # ============================================================

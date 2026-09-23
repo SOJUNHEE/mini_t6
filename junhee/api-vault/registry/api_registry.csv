@@ -44,7 +44,8 @@ status,provider,api_name,env_var,portal,issued_date,expires_date,daily_limit,doc
 다운로드완료,법제처,전략물자수출입고시 별표3 군용물자목록,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
 다운로드완료,법제처,전략물자수출입고시 별표4 통제번호 국제수출통제체제별 분류,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
 미다운로드,공공데이터포털,관세청_월별 품목별 국가별 수출입실적,,data.go.kr,,,,https://www.data.go.kr,HS 2·4단위 월별. 로그인 불필요,-
-미다운로드,법제처,전략물자수출입고시 별표2의2 상황허가 대상품목,,law.go.kr,,,,https://www.law.go.kr,★HS코드 명시 — 수출규제 탭 구현에 필수,-
+다운로드완료,법제처,전략물자수출입고시 별표2의2 상황허가 대상품목,,law.go.kr,2026-09-23,,,https://www.law.go.kr,reference_data/strategic/전략물자수출입고시_별표02_2_상황허가대상품목_시행20260901.hwpx 시행 2026-09-01 고시 제2026-101호. ★HS코드 명시 — 수출규제 탭 구현에 필수,원문대조 필요
+다운로드완료,법제처,전략물자수출입고시 별표2의3 상황허가 면제대상(제54조 관련),,law.go.kr,2026-09-23,,,https://www.law.go.kr,reference_data/strategic/전략물자수출입고시_별표02_3_상황허가면제대상_시행20260901.hwpx 시행 2026-09-01 고시 제2026-101호,원문대조 필요
 미다운로드,법제처,전략물자수출입고시 별표6 전략물자 수출지역 구분,,law.go.kr,,,,https://www.law.go.kr,가의1/가의2/나 지역. 허가종류 분기,-
 키불필요,World Bank,Indicators API v2,,api.worldbank.org,,,,https://api.worldbank.org,GDP·인구·무역비중,-
 키불필요,World Bank,WITS,,wits.worldbank.org,,,,https://wits.worldbank.org,국가별 교역·관세(TRAINS),-

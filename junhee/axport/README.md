@@ -200,6 +200,56 @@ axport/
 형식은 `AXPORT_<섹션>__<키>` 다. 예: `AXPORT_RUNTIME__PORT=8001`.
 환경변수를 추가·변경하면 `.env.example`·이 README·설정 검증을 함께 고친다 (CONTRIBUTING §6).
 
+## 배포
+
+Render 웹 UI 에만 있던 설정을 여기에 기록한다. 팀원이 같은 설정으로 재현할 수 있어야 한다.
+Blueprint 는 저장소 루트의 `render.yaml` 이다. **기존 서비스에 자동 적용되지 않는다** — 재현·신규 생성용이다.
+
+| 항목 | 값 |
+|---|---|
+| 플랫폼 | Render (무료 플랜) |
+| Root Directory | `junhee/axport` |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `PYTHONPATH=src uvicorn axport.main:app --host 0.0.0.0 --port $PORT` |
+
+`PYTHONPATH=src` 가 필요한 이유: src 레이아웃이고 `pyproject.toml` 을 두지 않으므로 패키지가 설치되지 않는다.
+`pytest.ini` 의 `pythonpath = src` 는 pytest 에만 적용된다.
+
+### 환경변수
+
+`api-vault/credentials/.env` 에 있는 **변수명**을 Render 대시보드(Environment)에 등록한다.
+키 값은 이 문서·저장소 어디에도 적지 않는다. 변수명 목록은 `api-vault/.env.example` 과 같다.
+`api_keys.get_key` 는 `os.environ` 을 먼저 보므로 Render 에는 `credentials/` 폴더가 없어도 환경변수만으로 키를 읽는다.
+
+```
+DATA_GO_KR_API_KEY
+ECOS_API_KEY
+KOREAEXIM_API_KEY
+UNIPASS_API_KEY
+COMTRADE_API_KEY
+CENSUS_API_KEY
+WTO_API_KEY
+TRADE_GOV_API_KEY
+NEWSDATA_API_KEY
+NEWSAPI_ORG_KEY
+OPENDART_API_KEY
+FINNHUB_API_KEY
+ALPHAVANTAGE_API_KEY
+TWELVEDATA_API_KEY
+LLM_PROVIDER
+ANTHROPIC_API_KEY
+OPENAI_API_KEY
+LAW_GO_KR_OC
+```
+
+### 무료 플랜 제약
+
+- **비활성 시 잠든다.** 15분 정도 요청이 없으면 인스턴스가 내려가고, 첫 요청에 약 50초가 걸린다.
+- **영구 디스크가 없다.** `instance/`(업로드·보고서·캐시) 내용이 재시작·재배포 시 소멸한다.
+  시연 이상의 용도로 쓰려면 외부 저장소가 필요하다.
+
+이 절은 설정을 옮겨 적은 것이다. 이 절을 작성하면서 배포 재현을 실행하지는 않았다 (CONTRIBUTING §9).
+
 ---
 
 ## 현재 확인된 것 / 확인하지 않은 것
