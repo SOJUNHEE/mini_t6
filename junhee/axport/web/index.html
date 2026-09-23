@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>AXPORT 분석 작업공간</title>
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+
+<a class="sr-only" href="#desktop-icons">본문으로 건너뛰기</a>
+
+<header class="appbar">
+  <span class="appbar__brand">AXPORT</span>
+  <span class="appbar__mode" id="app-mode">확인 중</span>
+  <span class="appbar__spacer"></span>
+
+  <button type="button" class="btn" id="keyboard-help">키보드 조작</button>
+  <button type="button" class="btn" id="toggle-motion" aria-pressed="false">
+    애니메이션 줄이기: 끔
+  </button>
+  <button type="button" class="btn" id="reset-layout">창 배치 초기화</button>
+  <button type="button" class="btn" id="reset-prefs">화면 설정 초기화</button>
+</header>
+
+<main class="desktop" id="desktop" aria-label="분석 바탕화면">
+  <!-- 바탕화면 아이콘과 빈 상태 -->
+  <div id="desktop-icons"></div>
+
+  <!-- 창 레이어 -->
+  <div id="window-layer"></div>
+
+  <!-- 창 목록 — 최소화한 창을 되찾는 경로 -->
+  <div class="taskbar" id="taskbar" role="toolbar" aria-label="열린 창 목록"></div>
+</main>
+
+<!-- 상태 변화를 문구로 알린다 (명세서 §9) -->
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

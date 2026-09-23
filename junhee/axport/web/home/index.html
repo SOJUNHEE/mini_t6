@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>AXPORT — 수출적합도 분석</title>
+<!-- 공통 토큰(로고·서체·네이비·버튼·초점·상태)은 앱과 같은 파일을 쓴다 -->
+<link rel="stylesheet" href="/static/css/tokens.css">
+<!-- 홈 전용 스타일. 앱 시안의 스타일 파일과 분리한다 (명세서 §8) -->
+<link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body class="home">
+
+<a class="sr-only" href="#intro">본문으로 건너뛰기</a>
+
+<!-- ── 상단 바: 우측 상단 앱 진입 버튼 (명세서 §1-4) ─────────────── -->
+<header class="hometop">
+  <a class="hometop__brand" href="/" aria-label="AXPORT 홈">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="28" height="28" focusable="false">
+        <rect x="3" y="3" width="26" height="26" rx="6" fill="currentColor" opacity=".16"/>
+        <path d="M9 22 16 9l7 13M12.2 17.5h7.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="hometop__name">AXPORT</span>
+  </a>
+  <nav class="hometop__nav" aria-label="홈 안내">
+    <a class="hometop__link" href="#intro">소개</a>
+    <a class="hometop__link" href="#flow">분석 흐름</a>
+    <a class="hometop__link" href="#principles">원칙</a>
+  </nav>
+  <button type="button" class="btn btn--primary hometop__enter" id="enter-app-top">
+    대시보드 앱 열기
+  </button>
+</header>
+
+<!-- ── 히어로: 네이비 배경 + 중앙 3D (명세서 §1-2) ─────────────── -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__stage" id="hero-stage" aria-hidden="true">
+    <!-- 3D 는 home-3d.js 가 여기에 그린다. 실패하면 아래 정적 대체가 남는다 -->
+    <div class="hero__fallback" id="hero-fallback">
+      <svg viewBox="0 0 240 240" width="240" height="240" focusable="false" role="img" aria-label="AXPORT 정적 로고">
+        <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>
+        <ellipse cx="120" cy="120" rx="96" ry="34" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+        <ellipse cx="120" cy="120" rx="34" ry="96" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+        <path d="M80 160 120 76l40 84M96 132h48" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="hero__fallback-note" id="hero-fallback-note">정적 화면</p>
+    </div>
+  </div>
+
+  <div class="hero__copy">
+    <p class="hero__eyebrow">수출적합도 분석 작업공간</p>
+    <h1 class="hero__title" id="hero-title">기업 데이터와 HS 코드로<br>수출 가능성을 근거와 함께 봅니다</h1>
+    <p class="hero__lead">
+      엑셀을 업로드하면 검증 → 매핑 확인 → 평가 대상 선택 → 3층 판정 순서로
+      결과와 판단 근거를 같은 화면에서 확인합니다.
+    </p>
+    <div class="hero__actions">
+      <button type="button" class="btn btn--primary btn--lg" id="enter-app-hero">대시보드 앱 열기</button>
+      <a class="btn btn--ghost btn--lg" href="#intro">아래로 더 보기</a>
+    </div>
+    <p class="hero__demo">
+      <span class="state state--not_entered"><span class="state-mark" aria-hidden="true">◌</span><span>시연 데이터 환경</span></span>
+      실제 기업 자료를 넣지 마세요.
+    </p>
+  </div>
+
+  <a class="hero__scrollhint" href="#intro" aria-label="아래로 스크롤">
+    <span aria-hidden="true">▾</span>
+  </a>
+</section>
+
+<!-- ── 스크롤 이후: 흰 배경, 정돈된 포멀 UI (명세서 §1-3) ─────────── -->
+<main class="content">
+  <section class="section" id="intro" aria-labelledby="intro-title">
+    <h2 class="section__title" id="intro-title">무엇을 하는 서비스인가</h2>
+    <p class="section__lead">
+      기업의 제품·거래·실적 데이터를 표준 엑셀 양식으로 받아, HS 코드와 대상국을
+      기준으로 <strong>규제 · 시장성 · 가격 · 물류 · 안정성</strong> 다섯 항목을 확인합니다.
+      결과는 항상 판단 근거·계산식·자료 출처와 함께 표시됩니다.
+    </p>
+    <div class="grid grid--5">
+      <div class="tile"><div class="tile__k">규제</div><div class="tile__v">필수 조건 검토</div><p class="tile__d">허가·원산지 등 법적 조건. 점수로 상쇄되지 않습니다.</p></div>
+      <div class="tile"><div class="tile__k">시장성</div><div class="tile__v">대상국 교역 실적</div><p class="tile__d">검증된 관세청 통계로 수출·수입 추이를 봅니다.</p></div>
+      <div class="tile"><div class="tile__k">가격</div><div class="tile__v">관세·원가·환율</div><p class="tile__d">자료 검증 전까지 평가 보류로 표시됩니다.</p></div>
+      <div class="tile"><div class="tile__k">물류</div><div class="tile__v">납기·운임</div><p class="tile__d">기업이 올린 물류 시트를 근거로 합니다.</p></div>
+      <div class="tile"><div class="tile__k">안정성</div><div class="tile__v">국가·거래처</div><p class="tile__d">거래 상대 대조 자료 검증 후 평가합니다.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="flow" aria-labelledby="flow-title">
+    <h2 class="section__title" id="flow-title">분석 흐름</h2>
+    <ol class="steps">
+      <li class="step"><span class="step__n">1</span><div><strong>업로드</strong><p>표준 양식(.xlsx). 형식·크기·셀 수를 서버가 검증합니다. 매크로·수식은 실행하지 않습니다.</p></div></li>
+      <li class="step"><span class="step__n">2</span><div><strong>검증</strong><p>숫자·날짜·중복·범위·연결 오류를 행 번호와 함께 돌려줍니다. 빈칸을 0으로 채우지 않습니다.</p></div></li>
+      <li class="step"><span class="step__n">3</span><div><strong>매핑 확인</strong><p>컬럼 자동 매핑은 후보만 제시합니다. 불명확한 연결은 사용자가 확정합니다.</p></div></li>
+      <li class="step"><span class="step__n">4</span><div><strong>평가 대상 선택</strong><p>기업 + 제품 + 목적국 + 거래 조건 + 기준일. 거래 조건이 없으면 시장 탐색으로 표시합니다.</p></div></li>
+      <li class="step"><span class="step__n">5</span><div><strong>3층 판정</strong><p>필수 조건 검토 / 사업적 적합도 / 근거 충족 상태. 화면과 보고서는 같은 평가 실행을 참조합니다.</p></div></li>
+    </ol>
+  </section>
+
+  <section class="section" id="principles" aria-labelledby="principles-title">
+    <h2 class="section__title" id="principles-title">지키는 원칙</h2>
+    <ul class="principles">
+      <li><span class="state state--actual"><span class="state-mark" aria-hidden="true">✓</span><span>구분</span></span> 실제 값 0 · 미입력 · 미평가 · 해당 없음 · 조회 실패를 절대 같은 값으로 표현하지 않습니다.</li>
+      <li><span class="state state--not_evaluated"><span class="state-mark" aria-hidden="true">‖</span><span>보류</span></span> 판정 규칙·점수 기준이 승인되기 전에는 계산을 시작하지 않고 그 사실을 표시합니다.</li>
+      <li><span class="state state--not_entered"><span class="state-mark" aria-hidden="true">△</span><span>부족</span></span> 자료가 없으면 임의 값으로 채우지 않고 필요한 입력을 알려 줍니다.</li>
+      <li><span class="state state--fetch_failed"><span class="state-mark" aria-hidden="true">!</span><span>장애</span></span> 외부 API 장애 시 샘플 자료로 바꿔 실제 결과처럼 보이게 하지 않습니다.</li>
+    </ul>
+    <div class="cta">
+      <button type="button" class="btn btn--primary btn--lg" id="enter-app-bottom">대시보드 앱 열기</button>
+      <p class="cta__note">앱 진입 시 서버 준비 상태를 확인한 뒤 이동합니다. 준비되지 않으면 이유와 다시 시도 경로를 보여 줍니다.</p>
+    </div>
+  </section>
+
+  <footer class="homefoot">
+    <span>AXPORT · 시연용 · 실제 기업 자료를 받지 않습니다</span>
+    <a href="/docs" class="homefoot__link">API 문서</a>
+  </footer>
+</main>
+
+<!-- ── 앱 진입 로딩 (명세서 §1-5, §8) — 실제 준비 상태와 연결 ────── -->
+<div class="loader" id="loader" hidden role="dialog" aria-modal="true" aria-labelledby="loader-title">
+  <div class="loader__card">
+    <div class="loader__mark" aria-hidden="true"><span class="loader__ring"></span></div>
+    <h2 class="loader__title" id="loader-title">앱 준비 상태 확인 중</h2>
+    <p class="loader__body" id="loader-body">서버 준비 상태를 확인하고 있습니다.</p>
+    <ul class="loader__checks" id="loader-checks" aria-live="polite"></ul>
+    <div class="loader__actions" id="loader-actions" hidden>
+      <button type="button" class="btn btn--primary" id="loader-retry">다시 시도</button>
+      <button type="button" class="btn" id="loader-cancel">홈으로 돌아가기</button>
+    </div>
+  </div>
+</div>
+
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<script type="module" src="/static/js/home.js"></script>
+</body>
+</html>

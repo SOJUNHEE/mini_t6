@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.py    text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.md    text eol=lf
+.env*   text eol=lf
+
+*.xlsx  binary
+*.xls   binary
+*.hwp   binary
+*.hwpx  binary
+*.pdf   binary

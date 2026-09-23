@@ -1,0 +1,150 @@
+# AXPORT 중앙 설정 (명세서 §11)
+#
+# 이 파일이 설정의 단일 출처다. 여기 있는 값을 UI·서버·보고서에
+# 중복 하드코딩하지 않는다.
+#
+# 값 표기 규칙
+#   확정  : 값이 들어 있다
+#   ""    : 미정. 명세서 §2 「개발 전에 결정할 항목」 — 승인 전까지 비워 둔다.
+#           빈 값을 임의의 기본값으로 대체하지 않는다. 그 기능은 비활성으로 둔다.
+#   제안  : 명세서 §2 에서 '제안' 으로 표시된 값. 확정 아님
+#
+# 비밀값은 여기에 넣지 않는다. API 키는 api-vault 에서만 읽는다. (명세서 §10)
+
+config_version = "0.1"
+
+# ── 실행 환경과 서비스 주소 ───────────────────────────────────────────
+[runtime]
+env = "development"          # development | test | production
+host = "127.0.0.1"
+port = 8000
+base_url = ""                # 미정 — 배포 환경 결정 후 (명세서 §2)
+app_path = "/app"            # 제안 (명세서 §2)
+home_path = "/"              # 제안 (명세서 §2)
+
+# ── 언어·시간대·통화·단위 ─────────────────────────────────────────────
+[locale]
+default_language = "ko"      # 제안 (명세서 §2)
+supported_languages = ["ko"] # 영어 확장 가능한 구조로 두되 현재 지원은 ko 만
+display_timezone = "Asia/Seoul"   # 제안. 시스템 시간은 UTC 저장 (명세서 §4)
+date_format = "YYYY-MM-DD"   # 명세서 §4
+event_time_storage = "UTC"   # 명세서 §4 — 변경 금지
+
+[currency]
+display_currency = ""        # 미정
+base_currency = ""           # 미정
+rate_source_id = ""          # 미정 — ECOS / 관세환율 / Frankfurter 중 주 출처 선정 (명세서 §7)
+rounding_policy = ""         # 미정 — 통화별 정밀도·반올림. 계산과 화면 반올림 분리 (명세서 §4)
+allowed_amount_multipliers = [1, 1000, 1000000]
+
+# ── 업로드·파일 처리·API 요청 제한 ────────────────────────────────────
+# 명세서 §2 「파일 크기·행 수·시트 수·처리시간 제한」 = 미정.
+# 빈 값인 동안 업로드 기능은 비활성으로 둔다. 임의 기본값을 쓰지 않는다.
+[upload]
+enabled = false
+allowed_extensions = [".xlsx"]        # 제안 (명세서 §2)
+template_version = "0.1"              # data/samples 의 양식 버전
+max_file_bytes = ""                   # 미정
+max_rows_per_sheet = ""               # 미정
+max_sheets = ""                       # 미정
+max_decompressed_bytes = ""           # 미정 — 압축해제 크기 (명세서 §5)
+max_cells = ""                        # 미정
+processing_timeout_seconds = ""       # 미정
+execute_macros = false                # 명세서 §5 — 변경 금지
+evaluate_formulas = false             # 명세서 §5 — 수식 셀 허용 정책 별도 결정 전까지 false
+formula_injection_guard = true        # 명세서 §5 — 변경 금지
+
+[api_limits]
+request_timeout_seconds = 30
+max_retries = 2
+retry_backoff_seconds = 2
+rate_limit_per_minute = ""            # 미정
+
+# ── 저장 경로·보관·백업 정책 ──────────────────────────────────────────
+# 경로는 프로젝트 루트 기준 상대경로다. 개인 PC 절대경로를 쓰지 않는다. (CONTRIBUTING §3)
+[storage]
+uploads_dir = "instance/uploads"
+reports_dir = "instance/reports"
+cache_dir = "instance/cache"
+reference_raw_dir = "data/reference/raw"
+reference_processed_dir = "data/reference/processed"
+samples_dir = "data/samples"
+rules_dir = "rules"
+api_vault_dir = "../api-vault"        # 참조만 한다. 수정하지 않는다
+
+[retention]
+# 명세서 §2 「데이터 보관 기간」 = 미정. 실제 기업 자료 수용 전 확정 (명세서 §10)
+original_file_days = ""
+normalized_data_days = ""
+report_days = ""
+log_days = ""
+backup_days = ""
+audit_log_days = ""
+
+# ── 외부 자료 갱신·캐시·최대 허용 경과시간 ────────────────────────────
+[external_data]
+cache_enabled = true
+cache_ttl_seconds = ""                # 미정
+max_age_days_default = ""             # 미정 — 초과 판정을 하지 않는다
+fail_on_stale = true                  # 오래된 자료를 조용히 최신처럼 쓰지 않는다 (명세서 §7)
+fallback_to_sample = false            # 명세서 §7 — 변경 금지. 장애 시 샘플 대체 금지
+registry_path = "../api-vault/registry/api_registry.csv"
+manifest_path = "../api-vault/reference_data/MANIFEST.csv"
+require_verified_for_decision = true  # verified=검증완료 아닌 소스를 확정 판정 근거로 쓰지 않는다
+
+# source_id 별 최대 허용 경과시간. 값이 없으면 초과 판정을 하지 않는다.
+# 임의 기준을 만들지 않는다 (명세서 §7).
+[external_data.max_age_days]
+customs_nitemtrade = ""               # 미정. 갱신주기 월1회 (활용가이드 문서)
+
+# ── 판정 규칙·양식·계산 엔진 버전 ─────────────────────────────────────
+[versions]
+template_version = "0.1"
+rule_set_version = ""                 # 미정 — rules/README.md §6. 원문대조 전까지 비움
+calc_engine_version = ""              # 미정
+scoring_config_version = ""           # 미정 — 가중치·임계값 승인 전
+rule_set_usable_in_production = false # rules/README.md G1 게이트. 변경은 검토 승인 사항
+
+# ── 기능 활성화·데모 모드 ─────────────────────────────────────────────
+[features]
+demo_mode = true                      # 시연 데이터 환경. 실제 기업 자료 수용 전까지 true (명세서 §10)
+upload = false
+evaluation = false
+reports = false
+ai_explain = false
+auth = false                          # 로그인 방식 미정 (명세서 §2)
+
+# ── AI 설명 보조 ──────────────────────────────────────────────────────
+[ai]
+enabled = false                       # 명세서 §2 — AI 기능은 '제안' 단계
+provider = ""                         # 미정
+model = ""                            # 미정
+max_requests_per_run = ""             # 미정
+monthly_cost_cap = ""                 # 미정
+# 명세서 §10 — 전송 대상을 명시적으로 열거한다. 비어 있으면 아무것도 보내지 않는다.
+# 아래 목록은 '설명에 필요한 최소 항목' 제안이며 승인 대상이다.
+send_fields_allowlist = [
+  "subject.product_id",
+  "subject.hs_code",
+  "subject.hs_version",
+  "subject.destination_country_code",
+  "subject.evaluation_base_date",
+  "analysis_mode_label",
+  "result.overall.decision",
+  "result.overall.decision_label",
+  "tab_details.*.label",
+  "tab_details.*.results.metrics[].label",
+  "tab_details.*.results.metrics[].state",
+  "tab_details.*.results.metrics[].display.text",
+  "tab_details.*.results.metrics[].unit",
+  "tab_details.*.results.metrics[].currency",
+  "tab_details.*.results.metrics[].period.start",
+  "tab_details.*.results.metrics[].period.end",
+  "tab_details.*.results.metrics[].data_class_label",
+  "tab_details.*.open_items.unconfirmed",
+]
+# 허용목록보다 우선한다. 기업·거래처 식별 정보는 코드에서도 항상 제외한다
+# (ai_explain/service.py 의 ALWAYS_DENY).
+send_fields_denylist = [
+  "company_id", "법인명", "주소", "등록번호", "최종사용자명", "최종용도",
+]

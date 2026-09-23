@@ -1,0 +1,62 @@
+# AXPORT (CONTRIBUTING §7)
+# 폴더를 만들었다고 자동으로 제외되지는 않는다. 경로별로 명시한다.
+
+# ── 비밀값 ────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+# api-vault 는 이 저장소 밖에서 참조한다. 혹시 안으로 복사돼도 막는다.
+**/credentials/
+**/API_KEYS_FORM.txt
+
+# ── 로컬 환경·캐시 ────────────────────────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+
+# ── 빌드·테스트 산출물 ────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/
+.next/
+coverage/
+.coverage
+htmlcov/
+playwright-report/
+test-results/
+
+# ── 실행 중 생성되는 비공개 데이터 ────────────────────────────────────
+# 실제 기업 업로드·보고서·API 캐시. Git 에 넣지 않는다.
+instance/*
+!instance/uploads/.gitkeep
+!instance/reports/.gitkeep
+!instance/cache/.gitkeep
+*.log
+
+# ── 외부 원본 자료 ────────────────────────────────────────────────────
+# 용량이 크고 이용조건 확인이 필요하다. 목록·해시는 manifest 로 관리한다.
+# *.xlsx, *.csv, *.pdf 를 무조건 제외하지 않는다 — 경로별로 정한다.
+data/reference/raw/*
+!data/reference/raw/.gitkeep
+!data/reference/raw/MANIFEST.csv
+data/reference/processed/*
+!data/reference/processed/.gitkeep
+
+# data/samples/ 의 가상 기업 데이터와 업로드 양식은 추적한다.
+
+# ── OS ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── 에디터 ────────────────────────────────────────────────────────────
+# .vscode 는 팀 공용 상대경로 설정만 선택적으로 공유한다.
+.vscode/*
+!.vscode/extensions.json
+.idea/

@@ -1,0 +1,16 @@
+# 직접 의존성 (소스 명세). 버전 고정은 requirements.txt 에 있다.
+# 추가·삭제 시 두 파일을 함께 바꾼다. (CONTRIBUTING §5)
+#
+# 잠금 파일 재생성:
+#   .venv/Scripts/python -m pip install -r requirements.in
+#   .venv/Scripts/python -m pip freeze --exclude-editable > requirements.txt
+
+# 런타임
+fastapi
+uvicorn[standard]
+openpyxl        # xlsx 판독. 수식은 실행하지 않는다 (data_only=False)
+python-multipart  # FastAPI 파일 업로드
+
+# 검증
+pytest
+httpx           # fastapi TestClient 가 사용한다

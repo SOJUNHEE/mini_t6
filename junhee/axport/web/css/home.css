@@ -1,0 +1,196 @@
+/* 홈 화면 (/) — 네이비 히어로 + 3D + 스크롤 이후 흰 배경 (명세서 §1-2~5, §8)
+ *
+ * 앱(app.css)과 분리된 시안이다. 색·간격·서체·버튼·초점·상태 표현은
+ * tokens.css 의 공통 토큰만 쓴다. 앱 파일을 수정하지 않는다.
+ */
+
+body.home { background: var(--surface-0); }
+
+/* 홈 전용 버튼 변형 — 높이·모서리·글자 크기는 공통 .btn 을 상속 */
+.btn--lg { min-height: 48px; padding: 0 var(--sp-5); font-size: var(--fs-title); }
+.btn--ghost { background: transparent; border-color: rgba(255,255,255,.45); color: #fff; }
+.btn--ghost:hover { background: rgba(255,255,255,.12); }
+
+/* ── 상단 바 ─────────────────────────────────────────────────────── */
+.hometop {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: var(--sp-4);
+  min-height: 60px; padding: var(--sp-2) var(--sp-5);
+  background: rgba(13, 27, 51, .92);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.hometop__brand {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  color: #fff; text-decoration: none; font-weight: var(--fw-bold);
+  font-size: var(--fs-title); letter-spacing: .02em;
+}
+.logo { display: inline-grid; place-items: center; color: #fff; }
+.hometop__nav { display: flex; gap: var(--sp-3); margin-left: var(--sp-3); }
+.hometop__link { color: rgba(255,255,255,.8); text-decoration: none; font-size: var(--fs-sub); padding: var(--sp-2); }
+.hometop__link:hover { color: #fff; }
+.hometop__enter { margin-left: auto; }   /* 우측 상단 (명세서 §1-4) */
+
+/* ── 히어로 ──────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--sp-6);
+  min-height: calc(100vh - 60px);
+  padding: var(--sp-6) var(--sp-5) 80px;
+  background:
+    radial-gradient(60% 60% at 70% 40%, rgba(46,117,182,.35), transparent 70%),
+    linear-gradient(180deg, var(--navy-900) 0%, var(--navy-800) 70%, var(--navy-700) 100%);
+  color: #fff;
+  overflow: hidden;
+}
+.hero__stage {
+  order: 2;
+  display: grid; place-items: center;
+  min-height: 360px;
+  perspective: 900px;
+}
+.hero__copy { order: 1; max-width: 56ch; }
+.hero__eyebrow { margin: 0 0 var(--sp-2); font-size: var(--fs-sub); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.72); }
+.hero__title { margin: 0 0 var(--sp-4); font-size: clamp(26px, 3.6vw, 40px); line-height: 1.25; font-weight: var(--fw-bold); }
+.hero__lead { margin: 0 0 var(--sp-5); font-size: var(--fs-title); line-height: var(--lh-title); color: rgba(255,255,255,.86); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+.hero__demo { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin: 0; font-size: var(--fs-sub); color: rgba(255,255,255,.8); }
+.hero__scrollhint {
+  position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%);
+  display: grid; place-items: center; width: 44px; height: 44px;
+  border: 1px solid rgba(255,255,255,.4); border-radius: 50%;
+  color: #fff; text-decoration: none;
+  animation: nudge 1.6s ease-in-out infinite;
+}
+@keyframes nudge { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 6px); } }
+
+/* 정적 대체 (3D 로드 실패·미지원·애니메이션 줄이기) */
+.hero__fallback { display: grid; place-items: center; gap: var(--sp-2); }
+.hero__fallback-note { margin: 0; font-size: var(--fs-caption); color: rgba(255,255,255,.6); }
+.hero__stage[data-3d="ready"] .hero__fallback { display: none; }
+
+/* ── 3D 오브젝트 (CSS transform 3D, 라이브러리 없음) ─────────────── */
+.obj {
+  position: relative;
+  width: 220px; height: 220px;
+  transform-style: preserve-3d;
+  animation: spin3d 18s linear infinite;
+}
+.obj__ring {
+  position: absolute; inset: 0;
+  border: 1.5px solid rgba(255,255,255,.35);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.obj__ring--a { transform: rotateX(72deg); }
+.obj__ring--b { transform: rotateX(72deg) rotateY(60deg); border-color: rgba(120,190,255,.55); }
+.obj__ring--c { transform: rotateX(72deg) rotateY(120deg); border-color: rgba(255,255,255,.25); }
+.obj__ring--eq { transform: rotateX(90deg) scale(1.18); border-style: dashed; border-color: rgba(255,255,255,.22); }
+.obj__core {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  animation: spin3d 9s linear infinite reverse;
+}
+.obj__face {
+  position: absolute; left: 50%; top: 50%;
+  width: 84px; height: 84px; margin: -42px 0 0 -42px;
+  border: 1.5px solid rgba(255,255,255,.55);
+  background: rgba(46,117,182,.22);
+  backface-visibility: visible;
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,.85);
+}
+.obj__face--f { transform: translateZ(42px); }
+.obj__face--b { transform: rotateY(180deg) translateZ(42px); }
+.obj__face--l { transform: rotateY(-90deg) translateZ(42px); }
+.obj__face--r { transform: rotateY(90deg) translateZ(42px); }
+.obj__face--t { transform: rotateX(90deg) translateZ(42px); }
+.obj__face--d { transform: rotateX(-90deg) translateZ(42px); }
+.obj__dot {
+  position: absolute; left: 50%; top: 50%;
+  width: 8px; height: 8px; margin: -4px 0 0 -4px;
+  border-radius: 50%; background: #fff;
+  box-shadow: 0 0 14px 4px rgba(120,190,255,.55);
+}
+@keyframes spin3d {
+  from { transform: rotateX(-18deg) rotateY(0deg); }
+  to   { transform: rotateX(-18deg) rotateY(360deg); }
+}
+/* 애니메이션 줄이기 — 회전을 멈추고 정지 3D 로 둔다 (tokens.css 가 duration 0 처리) */
+@media (prefers-reduced-motion: reduce) {
+  .obj, .obj__core, .hero__scrollhint { animation: none; }
+  .obj { transform: rotateX(-18deg) rotateY(28deg); }
+}
+
+/* ── 스크롤 이후: 흰 배경, 정돈된 포멀 UI ───────────────────────── */
+.content { background: var(--surface-0); color: var(--ink-900); }
+.section { max-width: 1080px; margin: 0 auto; padding: var(--sp-6) var(--sp-5); }
+.section--alt { max-width: none; background: var(--surface-1); }
+.section--alt > * { max-width: 1080px; margin-left: auto; margin-right: auto; }
+.section__title { margin: 0 0 var(--sp-3); font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--fw-bold); color: var(--navy-900); }
+.section__lead { margin: 0 0 var(--sp-5); max-width: 72ch; font-size: var(--fs-title); line-height: var(--lh-title); color: var(--ink-700); }
+
+.grid--5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--sp-3); }
+.tile { padding: var(--sp-3) var(--sp-4); border: 1px solid var(--line-200); border-radius: var(--radius-md); background: var(--surface-0); min-height: 128px; }
+.tile__k { font-size: var(--fs-caption); color: var(--ink-500); letter-spacing: .06em; }
+.tile__v { margin: var(--sp-1) 0 var(--sp-2); font-size: var(--fs-title); font-weight: var(--fw-bold); color: var(--navy-800); }
+.tile__d { margin: 0; font-size: var(--fs-sub); color: var(--ink-700); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.step { display: flex; gap: var(--sp-3); align-items: flex-start; padding: var(--sp-3) var(--sp-4); border: 1px solid var(--line-200); border-radius: var(--radius-md); background: var(--surface-0); }
+.step__n { flex: 0 0 auto; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--navy-700); color: #fff; font-weight: var(--fw-bold); font-family: var(--font-mono); }
+.step p { margin: var(--sp-1) 0 0; font-size: var(--fs-sub); color: var(--ink-700); }
+
+.principles { list-style: none; margin: 0 0 var(--sp-5); padding: 0; display: grid; gap: var(--sp-2); }
+.principles li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); padding: var(--sp-2) 0; border-bottom: 1px solid var(--line-100); font-size: var(--fs-sub); }
+
+.cta { display: grid; gap: var(--sp-2); justify-items: start; padding: var(--sp-4); border: 1px solid var(--line-200); border-radius: var(--radius-lg); background: var(--surface-1); }
+.cta__note { margin: 0; font-size: var(--fs-caption); color: var(--ink-500); }
+
+.homefoot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-3); padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--line-200); font-size: var(--fs-caption); color: var(--ink-500); }
+.homefoot__link { color: var(--navy-600); }
+
+/* ── 앱 진입 로딩 — 실제 준비 상태와 연결 ───────────────────────── */
+.loader {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  background: rgba(13,27,51,.86);
+  padding: var(--sp-4);
+}
+.loader[hidden] { display: none; }
+.loader__card {
+  width: min(520px, 100%);
+  padding: var(--sp-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface-0); color: var(--ink-900);
+  box-shadow: var(--win-shadow-active);
+  text-align: center;
+}
+.loader__mark { display: grid; place-items: center; height: 56px; margin-bottom: var(--sp-2); }
+.loader__ring {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 3px solid var(--line-200); border-top-color: var(--navy-600);
+  animation: spin 900ms linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader[data-state="error"] .loader__ring { animation: none; border-color: var(--st-block-line); border-top-color: var(--st-block-fg); }
+.loader[data-state="ready"] .loader__ring { animation: none; border-color: var(--st-ok-line); border-top-color: var(--st-ok-fg); }
+:root[data-reduced-motion="true"] .loader__ring { animation: none; }
+.loader__title { margin: 0 0 var(--sp-1); font-size: var(--fs-title); }
+.loader__body { margin: 0 0 var(--sp-3); color: var(--ink-700); font-size: var(--fs-sub); }
+.loader__checks { list-style: none; margin: 0 0 var(--sp-3); padding: 0; display: grid; gap: var(--sp-1); text-align: left; font-size: var(--fs-caption); }
+.loader__checks li { display: flex; gap: var(--sp-2); align-items: center; padding: var(--sp-1) var(--sp-2); border: 1px solid var(--line-100); border-radius: var(--radius-sm); }
+.loader__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); }
+.loader__actions[hidden] { display: none; }
+
+/* ── 좁은 화면 ───────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding-top: var(--sp-5); }
+  .hero__stage { order: 1; min-height: 260px; }
+  .hero__copy { order: 2; }
+  .obj { width: 170px; height: 170px; }
+  .hometop__nav { display: none; }
+}

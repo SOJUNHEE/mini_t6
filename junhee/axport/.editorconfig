@@ -1,0 +1,33 @@
+# 팀 공통 편집기 설정 (CONTRIBUTING §3)
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Python 은 공백 4칸 (CONTRIBUTING §3)
+[*.py]
+indent_size = 4
+max_line_length = 100
+
+[*.{toml,cfg,ini}]
+indent_size = 4
+
+[*.md]
+# Markdown 은 줄 끝 공백이 의미를 가질 수 있다
+trim_trailing_whitespace = false
+
+[*.{ts,tsx,js,jsx,css,html,json,yml,yaml}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+# 원본 자료는 편집 대상이 아니다
+[data/reference/raw/**]
+insert_final_newline = false
+trim_trailing_whitespace = false

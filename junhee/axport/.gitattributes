@@ -1,0 +1,55 @@
+# 줄바꿈과 바이너리 처리를 명시한다 (CONTRIBUTING §3)
+# 기본: 텍스트는 저장소에 LF 로 저장한다.
+* text=auto eol=lf
+
+# ── 텍스트 (LF 고정) ──────────────────────────────────────────────────
+*.py        text eol=lf diff=python
+*.toml      text eol=lf
+*.md        text eol=lf
+*.txt       text eol=lf
+*.json      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.cfg       text eol=lf
+*.ini       text eol=lf
+*.sh        text eol=lf
+*.ts        text eol=lf
+*.tsx       text eol=lf
+*.js        text eol=lf
+*.jsx       text eol=lf
+*.css       text eol=lf
+*.html      text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.editorconfig   text eol=lf
+.env.example    text eol=lf
+.python-version text eol=lf
+
+# Windows 전용 스크립트는 CRLF 로 둔다
+*.ps1       text eol=crlf
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+
+# ── 바이너리 (변환 금지) ──────────────────────────────────────────────
+# 공식 원본자료는 변환하지 않는다. 줄바꿈 정규화가 파일을 깨뜨린다.
+*.xlsx      binary
+*.xlsm      binary
+*.xls       binary
+*.hwp       binary
+*.hwpx      binary
+*.pdf       binary
+*.doc       binary
+*.docx      binary
+*.zip       binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.woff      binary
+*.woff2     binary
+*.glb       binary
+*.gltf      binary
+
+# CSV 는 텍스트지만 원본 자료는 인코딩·줄바꿈을 건드리지 않는다.
+data/reference/raw/**  -text

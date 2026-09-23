@@ -1,0 +1,58 @@
+status,provider,api_name,env_var,portal,issued_date,expires_date,daily_limit,doc_url,note,verified
+발급완료,공공데이터포털,관세청_품목별 국가별 수출입실적(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,10000,https://www.data.go.kr,HS×국가 메인 통계. getNitemtradeList / XML전용 / 보관키 as-is(Encoding) 동작 / HTTPS 가능. 응답 첫 item 이 총계,검증완료 2026-09-22
+발급완료,공공데이터포털,관세청_관세환율정보(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,1000,https://www.data.go.kr,주간 과세환율. 관세율·결제환율과 구분,미검증
+발급완료,공공데이터포털,관세청_세관장확인대상물품(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,HS별 수출입 요건,미검증
+발급완료,공공데이터포털,대한무역투자진흥공사_국가정보,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,1000,https://www.data.go.kr,국가별 시장 분석,미검증
+발급완료,공공데이터포털,대한무역투자진흥공사_국가 목록,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,대한 수입규제 현황 포함,미검증
+발급완료,공공데이터포털,한국무역보험공사_국가목록,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,264개국 신용등급 기반,미검증
+발급완료,공공데이터포털,해양수산부_선박운항정보,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,스케줄만. 실제 운임·납기 아님,미검증
+발급완료,공공데이터포털,해양수산부_항만별 선박입출항실적,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,10000,https://www.data.go.kr,항만별 통계,미검증
+발급완료,공공데이터포털,관세청_국가별 수출입실적(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,국가·경제권 단위 집계,미검증
+발급완료,공공데이터포털,관세청_성질별 수출입실적(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,소비재·원자재·자본재,미검증
+발급완료,공공데이터포털,관세청_시도별 품목별 수출입실적(GW),DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,17개 시도,미검증
+발급완료,공공데이터포털,관세청_시군구별 품목별 수출입실적,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,시군구 무역수지,미검증
+발급완료,공공데이터포털,대한무역투자진흥공사_해외인증정보,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,국가별 인증 제도,미검증
+발급완료,공공데이터포털,인천항만공사_인천항 선박 입출항 정보,DATA_GO_KR_API_KEY,data.go.kr,2026-09-18,2028-09-18,,https://www.data.go.kr,심의승인 대상,미검증
+발급완료,한국은행,ECOS 통계 API,ECOS_API_KEY,ecos.bok.or.kr,2026-09-18,,,https://ecos.bok.or.kr/api,환율·수출입물가·경상수지,미검증
+발급완료,UN,UN Comtrade,COMTRADE_API_KEY,comtradedeveloper.un.org,2026-09-18,,500,https://comtradedeveloper.un.org,일 500회·호출당 10만건,미검증
+발급완료,US Census,International Trade API,CENSUS_API_KEY,api.census.gov,2026-09-18,,,https://api.census.gov,모든 요청에 키 필수,미검증
+발급완료,WTO,Timeseries API,WTO_API_KEY,apiportal.wto.org,2026-09-18,,,https://apiportal.wto.org,양허·실행·특혜 관세,미검증
+발급완료,US ITA,Consolidated Screening List,TRADE_GOV_API_KEY,developer.trade.gov,2026-09-18,,,https://developer.trade.gov,헤더 subscription-key. 미국 CSL 기준 명시 필수,미검증
+발급완료,US ITA,FTA Tariff Rates,TRADE_GOV_API_KEY,developer.trade.gov,2026-09-18,,,https://developer.trade.gov,같은 구독키,미검증
+발급완료,법제처,국가법령정보 Open API,LAW_GO_KR_OC,open.law.go.kr,2026-09-18,,,https://open.law.go.kr,OC=이메일ID. 고시 본문·개정일 추적,검증완료 2026-09-22
+발급완료,금융감독원,OpenDART 전자공시,OPENDART_API_KEY,opendart.fss.or.kr,2026-09-18,,,https://opendart.fss.or.kr,국내 상장사 재무제표,미검증
+발급완료,Finnhub,해외 주식 시세·재무,FINNHUB_API_KEY,finnhub.io,2026-09-18,,60/min,https://finnhub.io,TSM·MU·NVDA 20분 지연,미검증
+발급완료,NewsData.io,뉴스 검색 API,NEWSDATA_API_KEY,newsdata.io,2026-09-18,,,https://newsdata.io,선택 항목,미검증
+발급완료,NewsAPI.org,뉴스 검색 API,NEWSAPI_ORG_KEY,newsapi.org,2026-09-18,,,https://newsapi.org,선택 항목. NewsData와 중복,미검증
+발급완료,Alpha Vantage,해외 시세 보조,ALPHAVANTAGE_API_KEY,alphavantage.co,2026-09-18,,5/min,https://www.alphavantage.co,한도 빡빡,미검증
+재발급필요,OpenAI,Chat Completions,OPENAI_API_KEY,platform.openai.com,,,,https://platform.openai.com,2026-09-22 노출로 폐기. 재발급 후 입력,-
+미신청,Anthropic,Messages API,ANTHROPIC_API_KEY,console.anthropic.com,,,,https://console.anthropic.com,OpenAI 대안,-
+미신청,한국수출입은행,현재환율 API,KOREAEXIM_API_KEY,koreaexim.go.kr,,,,https://www.koreaexim.go.kr,ECOS와 기능 중복. 보류 권장,-
+미신청,관세청,UNI-PASS 화물통관진행정보,UNIPASS_API_KEY,unipass.customs.go.kr,,,,https://unipass.customs.go.kr,실제 B/L 없으면 후순위,-
+미신청,네이버,검색 API(뉴스),NAVER_CLIENT_ID,developers.naver.com,,,25000,https://developers.naver.com,NEWSDATA로 대체 가능,-
+미신청,공공데이터포털,금융위원회_주식시세정보,DATA_GO_KR_API_KEY,data.go.kr,,,,https://www.data.go.kr,같은 키로 활용신청만 하면 됨,-
+미신청,공공데이터포털,금융위원회_기업기본정보,DATA_GO_KR_API_KEY,data.go.kr,,,,https://www.data.go.kr,같은 키로 활용신청만 하면 됨,-
+미신청,공공데이터포털,금융위원회_기업재무정보,DATA_GO_KR_API_KEY,data.go.kr,,,,https://www.data.go.kr,같은 키로 활용신청만 하면 됨,-
+미신청,Twelve Data,주식·환율·원자재,TWELVEDATA_API_KEY,twelvedata.com,,,800/day,https://twelvedata.com,선택,-
+다운로드완료,공공데이터포털,관세청_HS부호,,data.go.kr,2026-01-01,,,https://www.data.go.kr,reference_data/customs/,-
+다운로드완료,공공데이터포털,관세청_품목번호별 관세율표,,data.go.kr,2026-02-11,,,https://www.data.go.kr,reference_data/customs/,-
+다운로드완료,공공데이터포털,관세청_국가별 관세율표,,data.go.kr,2025-12-31,,,https://www.data.go.kr,reference_data/customs/ 43개국·법적효력 없는 참고용,-
+다운로드완료,공공데이터포털,한국무역보험공사_국가신용등급,,data.go.kr,2026-02-06,,,https://www.data.go.kr,reference_data/ksure/ 1~7등급,-
+다운로드완료,OECD,Country Risk Classification,,oecd.org,2026-09-22,,,https://www.oecd.org/trade/topics/export-credits/,reference_data/oecd/ 0=미분류 주의,-
+다운로드완료,법제처,전략물자수출입고시 별표1 전략물자·기술 색인,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
+다운로드완료,법제처,전략물자수출입고시 별표2 이중용도품목,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
+다운로드완료,법제처,전략물자수출입고시 별표3 군용물자목록,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
+다운로드완료,법제처,전략물자수출입고시 별표4 통제번호 국제수출통제체제별 분류,,law.go.kr,2026-09-22,,,https://www.law.go.kr,reference_data/strategic/ 시행 2026-09-01 고시 제2026-101호. 파일명 '개정안' 원문대조 필요,원문대조 필요
+미다운로드,공공데이터포털,관세청_월별 품목별 국가별 수출입실적,,data.go.kr,,,,https://www.data.go.kr,HS 2·4단위 월별. 로그인 불필요,-
+미다운로드,법제처,전략물자수출입고시 별표2의2 상황허가 대상품목,,law.go.kr,,,,https://www.law.go.kr,★HS코드 명시 — 수출규제 탭 구현에 필수,-
+미다운로드,법제처,전략물자수출입고시 별표6 전략물자 수출지역 구분,,law.go.kr,,,,https://www.law.go.kr,가의1/가의2/나 지역. 허가종류 분기,-
+키불필요,World Bank,Indicators API v2,,api.worldbank.org,,,,https://api.worldbank.org,GDP·인구·무역비중,-
+키불필요,World Bank,WITS,,wits.worldbank.org,,,,https://wits.worldbank.org,국가별 교역·관세(TRAINS),-
+키불필요,IMF,Data API SDMX 3.0,,data.imf.org,,,,https://data.imf.org,상품교역·교역조건,-
+키불필요,Eurostat,Comext,,ec.europa.eu/eurostat,,,,https://ec.europa.eu/eurostat,EU 교역,-
+키불필요,OTS,Open Trade Statistics,,tradestatistics.io,,,,https://tradestatistics.io,최신 연도 반영 느림,-
+키불필요,Frankfurter,ECB 환율,,frankfurter.dev,,,,https://frankfurter.dev,1999년 이후 시계열,-
+키불필요,USITC,HTS REST API,,hts.usitc.gov,,,,https://hts.usitc.gov,미국 관세율표,-
+키불필요,ExchangeRate-API,Open Access,,open.er-api.com,,,,https://open.er-api.com,출처표기 필수·재배포 금지,-
+키불필요,Stooq,주가 일봉 CSV,,stooq.com,,,,https://stooq.com,예) ?s=tsm.us&i=d,-
+키불필요,GDELT,DOC 2.0,,api.gdeltproject.org,,,,https://api.gdeltproject.org,뉴스 대체 소스,-
