@@ -37,10 +37,13 @@ test-results/
 # 폴더 자체도 예외로 두어야 그 안의 .gitkeep 예외가 살아난다.
 instance/*
 !instance/uploads/
+instance/uploads/*
 !instance/uploads/.gitkeep
 !instance/reports/
+instance/reports/*
 !instance/reports/.gitkeep
 !instance/cache/
+instance/cache/*
 !instance/cache/.gitkeep
 *.log
 

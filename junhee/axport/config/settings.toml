@@ -38,18 +38,19 @@ rounding_policy = ""         # 미정 — 통화별 정밀도·반올림. 계산
 allowed_amount_multipliers = [1, 1000, 1000000]
 
 # ── 업로드·파일 처리·API 요청 제한 ────────────────────────────────────
-# 명세서 §2 「파일 크기·행 수·시트 수·처리시간 제한」 = 미정.
-# 빈 값인 동안 업로드 기능은 비활성으로 둔다. 임의 기본값을 쓰지 않는다.
+# 명세서 §2 「파일 크기·행 수·시트 수·처리시간 제한」
+# 2026-09-23 조장 승인 — 시연용 기준 (명세서 §14 변경 관리).
+# 실측·벤치마크가 아니라 시연용으로 정한 값이다. 실제 기업 자료 수용 전 재검토한다.
 [upload]
-enabled = false
+enabled = true
 allowed_extensions = [".xlsx"]        # 제안 (명세서 §2)
 template_version = "0.1"              # data/samples 의 양식 버전
-max_file_bytes = ""                   # 미정
-max_rows_per_sheet = ""               # 미정
-max_sheets = ""                       # 미정
-max_decompressed_bytes = ""           # 미정 — 압축해제 크기 (명세서 §5)
-max_cells = ""                        # 미정
-processing_timeout_seconds = ""       # 미정
+max_file_bytes = 10485760             # 10 MB (10 × 1024 × 1024 bytes)
+max_rows_per_sheet = 50000            # 50,000 행 / 시트
+max_sheets = 20                       # 20 시트
+max_decompressed_bytes = 104857600    # 100 MB — 압축해제 크기 (명세서 §5)
+max_cells = 1000000                   # 1,000,000 셀 (전체 시트 합계)
+processing_timeout_seconds = 60       # 60 초
 execute_macros = false                # 명세서 §5 — 변경 금지
 evaluate_formulas = false             # 명세서 §5 — 수식 셀 허용 정책 별도 결정 전까지 false
 formula_injection_guard = true        # 명세서 §5 — 변경 금지
@@ -108,7 +109,7 @@ rule_set_usable_in_production = false # rules/README.md G1 게이트. 변경은 
 # ── 기능 활성화·데모 모드 ─────────────────────────────────────────────
 [features]
 demo_mode = true                      # 시연 데이터 환경. 실제 기업 자료 수용 전까지 true (명세서 §10)
-upload = false
+upload = true                         # 2026-09-23 조장 승인. 시연용 (명세서 §14)
 evaluation = false
 reports = false
 ai_explain = false

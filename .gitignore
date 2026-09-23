@@ -36,10 +36,13 @@ node_modules/
 # 실제 업로드·보고서·캐시 파일은 계속 제외된다.
 instance/*
 !instance/uploads/
+instance/uploads/*
 !instance/uploads/.gitkeep
 !instance/reports/
+instance/reports/*
 !instance/reports/.gitkeep
 !instance/cache/
+instance/cache/*
 !instance/cache/.gitkeep
 *.log
 
